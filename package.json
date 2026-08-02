@@ -6,10 +6,10 @@
   "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node dist/seed/demo-user.js",
+    "seed": "node src/seed/demo-user.js",
     "dev": "nodemon --exec ts-node src/server.ts",
     "build": "prisma generate && tsc",
-    "server": "node dist/server.js"
+    "server": "node src/server.js"
   },
   "keywords": [],
   "author": "",
