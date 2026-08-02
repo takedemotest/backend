@@ -1,12 +1,15 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
 
-const authRoutes = require('./routes/auth.routes')
+// Note: Always add .js extensions to local relative imports in ESM
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRoutes)
+app.use('/api/auth', authRoutes);
 
-module.exports = app;
+// Replace module.exports = app with export default
+export default app;

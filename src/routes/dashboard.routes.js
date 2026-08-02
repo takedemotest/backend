@@ -1,7 +1,7 @@
-const {getStats} = require('../controllers/dashboard.controller')
+import { getStats } from '../controllers/dashboard.controller.js';
 
-async function dashboardRoutes(fastify, options){
- fastify.get('/stats', getStats);
+async function dashboardRoutes(fastify, options) {
+  fastify.get('/stats', getStats);
 }
 
-module.exports = dashboardRoutes;
+export default dashboardRoutes;

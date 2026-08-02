@@ -1,7 +1,8 @@
-const activityController = require('../controllers/activity.controller');
+import activityController from '../controllers/activity.controller.js';
 
-async function activityRoutes(fastify){
-    fastify.get('/activities', activityController.getActivities)
-    fastify.post('/activities', activityController.createActivity)
+async function activityRoutes(fastify) {
+    fastify.get('/activities', activityController.getActivities);
+    fastify.post('/activities', activityController.createActivity);
 }
-module.exports = activityRoutes
+
+export default activityRoutes;

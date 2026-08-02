@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
+
 const userSchema = new mongoose.Schema(
-    {
+  {
     name: {
       type: String,
       required: true
@@ -14,17 +15,22 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    role:{
-      type:String,
-      enum:['admin', 'staff'],
-      default:'staff'
+    role: {
+      type: String,
+      enum: ['admin', 'staff'],
+      default: 'staff'
     }
   },
   { timestamps: true }
 );
-userSchema.method.toJSON = function(){
+
+// Fixed typo: methods (plural) instead of method
+userSchema.methods.toJSON = function () {
   const userObject = this.toObject();
   delete userObject.password;
   return userObject;
 };
-module.exports = mongoose.model('User', userSchema)
+
+const User = mongoose.model('User', userSchema);
+
+export default User;
