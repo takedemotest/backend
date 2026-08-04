@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+const EXPENSE_VALUES = ['Seeds', 'Feed', 'Fertilizer', 'Pesticides', 'Healthcare', 'Labor', 'Transport', 'Other'];
+const REVENUE_VALUES = ['Sales', 'Other'];
+
 const transactionSchema= new mongoose.Schema({
     type: {
         type: String,
@@ -22,7 +25,17 @@ const transactionSchema= new mongoose.Schema({
     category:{
         type: String,
         required: true,
-        enum:['Seeds', 'Feed', 'Fertilizer', 'Pesticides', 'Healthcare', 'Labor', 'Transport', 'Sales', 'Other']
+        validate:{
+            validator:function(value){
+                if(this.type === 'EXPENSE'){
+                    return EXPENSE_VALUES.includes(value);
+                } else if(this.type === 'REVENUE'){
+                    return REVENUE_VALUES.includes(value);
+                }
+                return true;
+            },
+            message: props => `${props.value} is not a valid category for type ${this.type}`
+        }
     },
     title:{
         type: String,
