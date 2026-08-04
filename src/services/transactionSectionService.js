@@ -57,7 +57,7 @@ export class TransactionService {
     let totalExpense = 0;
     let totalRevenue = 0;
 
-    transactions.foreach((t) => {
+    transactions.forEach((t) => {
       if (t.type === "EXPENSE") {
         totalExpense += t.amount;
       } else if (t.type === "REVENUE") {
