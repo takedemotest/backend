@@ -25,7 +25,7 @@ await fastify.register(cors, { origin: '*' });
 await fastify.register(fastifySwagger,{
     openapi:{
         info:{
-            title:'farm expense and revenue API',
+            title:'Krishit Farm Management API',
             description:'API documentation',
             version:'1.0.0'
         }
