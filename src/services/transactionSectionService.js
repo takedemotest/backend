@@ -13,6 +13,7 @@ const expenseValues = [
 const revenueValues = ["Sales", "Other"];
 
 export class TransactionService {
+  
   static async validateTransactionData(data) {
     const { type, category, amount } = data;
 
@@ -21,7 +22,6 @@ export class TransactionService {
         `Invalid category for EXPENSE. Allowed values are: ${expenseValues.join(", ")}`,
       );
     }
-
     if (type === "REVENUE" && !revenueValues.includes(category)) {
       throw new Error(
         `Invalid category for REVENUE. Allowed values are: ${revenueValues.join(", ")}`,
@@ -65,8 +65,8 @@ export class TransactionService {
       }
     });
 
-    const netProfit = totalRevenue - totalExpense;
-    const profitMargin =
+    let netProfit = totalRevenue - totalExpense;
+    let profitMargin =
       totalRevenue > 0 ? ((netProfit / totalRevenue) * 100).toFixed(2) : 0;
 
     return {

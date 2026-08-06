@@ -2,6 +2,7 @@ import {
   createTransaction,
   getTransactions,
   getFinancialSummary,
+  deleteTransaction,
 } from "../controllers/transactionController.js";
 
 async function transactionRoutes(fastify, options) {
@@ -87,45 +88,11 @@ async function transactionRoutes(fastify, options) {
   );
 
   fastify.get("/summary",
-    {
-      schema: {
-        description: "Get financial summary for a specific main activity",
-        tags: ["Transactions"],
-        querystring: {
-          type: "object",
-          properties: {
-            mainActivity: {
-              type: "string",
-              enum: [
-                "CROP_FARMING",
-                "DAIRY_FARMING",
-                "GOAT_FARMING",
-                "POULTRY_FARMING",
-                "PIGGERY",
-              ],
-            },
-          },
-        },
-        response: {
-          200: {
-            type: "object",
-            properties: {
-              success: { type: "boolean" },
-              data: {
-                type: "object",
-                properties: {
-                  totalExpense: { type: "number" },
-                  totalRevenue: { type: "number" },
-                  netBalance: { type: "number" },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
+  
     getFinancialSummary,
   );
+
+  fastify.delete("/:id",deleteTransaction)
 }
 
 export default transactionRoutes;
