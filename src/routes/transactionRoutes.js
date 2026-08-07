@@ -85,47 +85,7 @@ async function transactionRoutes(fastify, options) {
     },
     getTransactions,
   );
-
-  fastify.get("/summary",
-    {
-      schema: {
-        description: "Get financial summary for a specific main activity",
-        tags: ["Transactions"],
-        querystring: {
-          type: "object",
-          properties: {
-            mainActivity: {
-              type: "string",
-              enum: [
-                "CROP_FARMING",
-                "DAIRY_FARMING",
-                "GOAT_FARMING",
-                "POULTRY_FARMING",
-                "PIGGERY",
-              ],
-            },
-          },
-        },
-        response: {
-          200: {
-            type: "object",
-            properties: {
-              success: { type: "boolean" },
-              data: {
-                type: "object",
-                properties: {
-                  totalExpense: { type: "number" },
-                  totalRevenue: { type: "number" },
-                  netBalance: { type: "number" },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    getFinancialSummary,
-  );
+  fastify.get("/summary", getFinancialSummary);
 }
 
 export default transactionRoutes;
